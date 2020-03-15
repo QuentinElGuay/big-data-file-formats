@@ -5,8 +5,9 @@ from xml.etree import ElementTree as ET
 import fastavro
 
 SOURCE_FILE = 'data/paris/2.250182,48.818215,2.251182,48.819215.osm'
-AVRO_FILE = 'output/nodes.avro'
-JSON_FILE = 'output/nodes.json'
+AVRO_FILE = 'Avro/output/nodes.avro'
+AVRO_COMPRESSED_FILE = 'Avro/output/compressed_nodes.avro'
+JSON_FILE = 'Avro/output/nodes.json'
 
 # Define data schema
 schema = {
@@ -36,6 +37,11 @@ with open(AVRO_FILE, 'wb') as avro_file:
     # Ecriture des données
     fastavro.writer(avro_file, schema, nodes)
 
+# Dump nodes dictionary in an avro file and use snappy compression algorithm
+with open(AVRO_COMPRESSED_FILE, 'wb') as avro_file:
+    # Ecriture des données
+    fastavro.writer(avro_file, schema, nodes, codec='snappy')
+
 # do the same with JSON format (for comparison)
 with open(JSON_FILE, 'w') as json_file:
     json.dump([schema, nodes], json_file)
@@ -45,5 +51,7 @@ def print_file_size(file_path):
     file_stats = os.stat(file_path)
     print(f'Size of file {file_path} is {file_stats.st_size}')
 
+print('Comparison of the file size of the 3 formats:')
 print_file_size(AVRO_FILE)
+print_file_size(AVRO_COMPRESSED_FILE)
 print_file_size(JSON_FILE)
