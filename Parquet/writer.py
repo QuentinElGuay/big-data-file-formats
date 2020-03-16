@@ -10,19 +10,6 @@ PARQ_SNAPPY_FILE = 'Parquet/output/snappy_nodes.parq'
 PARQ_GZIP_FILE = 'Parquet/output/gzip_nodes.parq'
 JSON_FILE = 'Parquet/output/nodes.json'
 
-# # Define data schema
-# schema = {
-#     "type": "record",
-#     "namespace": "openstreetmap",
-#     "name": "nodes",
-#     "fields": [
-#         {"name": "id", "type": "long"},
-#         {"name": "longitude", "type": "float"},
-#         {"name": "latitude", "type": "float"},
-#         {"name": "username", "type": "string"},
-#     ]
-# }
-
 nodes = []
 tree = ET.parse(open(SOURCE_FILE))
 for node in tree.iterfind('node'):
