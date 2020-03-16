@@ -1,0 +1,11 @@
+{
+    "type": "record",
+    "namespace": "openstreetmap",
+    "name": "nodes",
+    "fields": [
+        {"name": "id", "type": "long"},
+        {"name": "longitude", "type": "float"},
+        {"name": "latitude", "type": "float"},
+        {"name": "username", "type": "string"}
+    ]
+}

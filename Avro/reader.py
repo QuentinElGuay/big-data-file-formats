@@ -1,18 +1,23 @@
-import fastavro
 from pprint import pprint
+import sys
 
-AVRO_FILE = 'data/avro/userdata1.avro'
-AVRO_SCHEMA = 'data/avro/user.avsc'
+import fastavro
+
+avro_file = sys.argv[1]
+schema = sys.argv[2]
+compression_codec = 'null'
+if len(sys.argv) > 3:
+    compression_codec = sys.argv[3]
 
 # Read Avro schema
-schema = fastavro.schema.load_schema(AVRO_SCHEMA)
+schema = fastavro.schema.load_schema(schema)
 
 # Read Avro file
-with open(AVRO_FILE, 'rb') as avro_file:
+with open(avro_file, 'rb') as avro_file:
     reader = fastavro.reader(avro_file, schema)
     
     # Set compression codec
-    reader.codec='snappy'
+    reader.codec=compression_codec
 
     # print file content
     for record in reader:
