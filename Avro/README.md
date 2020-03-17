@@ -7,7 +7,7 @@ Row-based formats are optimized for fast writing therefore they are recommended 
 
 Avro stores the data in a binary format and embeds the data schema as JSON (which means human-readable) in the file header. By doing so, Avro keeps an on-write data structure. It also allows [schema evolution](https://avro.apache.org/docs/current/spec.html#Schema+Resolution) in an easy way with retrocompatibility when required.
 
-Avro is the less optimized format for compression but it allows using the snappy, bzip2 and deflate algorithms ((documentation](https://avro.apache.org/docs/1.8.1/api/java/org/apache/avro/file/CodecFactory.html)). 
+Avro is the less optimized format for compression but it allows using the `snappy`, `bzip2` and `deflate` algorithms ((documentation](https://avro.apache.org/docs/1.8.1/api/java/org/apache/avro/file/CodecFactory.html)). 
 
 #### Kafka
 Avro is the [recommended](https://www.confluent.io/blog/avro-kafka-data/) file format for Kafka as the main goal of Kafka is collecting and writing data.
